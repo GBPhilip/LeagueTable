@@ -1,7 +1,14 @@
-﻿namespace LeagueTable
+﻿using LeagueTable.Domain;
+
+namespace LeagueTable
 {
-    public class Class1
+    internal class TableCalculator
     {
+        public TableCalculator() { }
+        public List<TableEntry> xxx(List<Result> results)
+        {
+            return null;
+        }
 
     }
 }
