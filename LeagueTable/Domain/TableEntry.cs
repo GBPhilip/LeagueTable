@@ -18,13 +18,13 @@
         /// </summary>
         public int OvertimeWins { get; set; }
         /// <summary>
-        /// The number of loses by a team in overtime/penalty shots
+        /// The number of losses by a team in overtime/penalty shots
         /// </summary>
-        public int OvertimeLoses { get; set; }
+        public int OvertimeLosses { get; set; }
         /// <summary>
-        /// The number of loses by a team in regulatory time
+        /// The number of losses by a team in regulatory time
         /// </summary>
-        public int Loses { get; set; }
+        public int Losses { get; set; }
         /// <summary>
         /// The number of wins by a team in regulatory time
         /// </summary>

@@ -14,8 +14,8 @@ namespace LeagueTableTests
             {
                 TeamId = 1,
                 Wins = 1,
-                Loses = 0,
-                OvertimeLoses = 0,
+                Losses = 0,
+                OvertimeLosses = 0,
                 OvertimeWins = 0,
                 GoalsConceded = 0,
                 GoalsScored = 1
@@ -24,8 +24,8 @@ namespace LeagueTableTests
             {
                 TeamId = 1,
                 Wins = 1,
-                Loses = 0,
-                OvertimeLoses = 0,
+                Losses = 0,
+                OvertimeLosses = 0,
                 OvertimeWins = 0,
                 GoalsConceded = 0,
                 GoalsScored = 1
