@@ -51,5 +51,21 @@ namespace LeagueTable.Tests
             // Assert
             tableEntry.Points.Should().Be(2);
         }
+
+        [Fact]
+        public void When_Team_Has_One_Overtime_Loss_Should_Have_One_Point()
+        {
+            // Arrange
+            var tableEntry = new TableEntry()
+            {
+                TeamId = 2,
+                OvertimeLoses = 1
+
+            };
+
+            // Assert
+            tableEntry.Points.Should().Be(1);
+        }
+
     }
 }
