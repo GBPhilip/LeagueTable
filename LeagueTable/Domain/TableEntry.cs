@@ -33,5 +33,9 @@
         /// The number of wins by a team in regulatory time
         /// </summary>
         public int GoalsConceded { get; set; }
+        /// <summary>
+        /// The number of points achieved by the team
+        /// </summary>
+        public int Points { get => (Wins * 3) + (OvertimeWins * 2); }
     }
 }
