@@ -9,6 +9,5 @@ namespace LeagueTable
         {
             return null;
         }
-
     }
 }
