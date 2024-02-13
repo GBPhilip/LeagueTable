@@ -59,7 +59,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 TeamId = 2,
-                OvertimeLoses = 1
+                OvertimeLosses = 1
 
             };
 
