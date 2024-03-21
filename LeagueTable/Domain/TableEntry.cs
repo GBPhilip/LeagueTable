@@ -37,5 +37,9 @@
         /// The number of points achieved by the team
         /// </summary>
         public int Points { get => (Wins * 3) + (OvertimeWins * 2) + (OvertimeLosses * 1); }
+        /// <summary>
+        /// The number of games played by the team
+        /// </summary>
+        public int Played { get => 1; }
     }
 }
