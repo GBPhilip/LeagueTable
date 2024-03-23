@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Diagnostics;
 
+using System.Runtime.CompilerServices;
+
 namespace LeagueTable.Domain
 {
     /// <summary>
@@ -58,20 +60,10 @@ namespace LeagueTable.Domain
         /// The number of games played by the team
         /// </summary>
         public int Played { get => Wins + Losses + OvertimeWins + OvertimeLosses; }
-
-        private int CalculateWins()
-        {
-            var wins = 0;
-
-            foreach (var result in _results)
-            {
-                if(result.HomeScore > result.AwayScore && result.HomeTeamId == TeamId)
-                {
-                    wins++;
-                }
-            }
-
-            return wins;
-        }
+        /// <summary>
+        /// A method to calculate the number of wins in regulation time for the team
+        /// </summary>
+        /// <returns>An integer</returns>
+        private int CalculateWins() => _results.HomeWinsInRegulation(TeamId).Count();
     }
 }
