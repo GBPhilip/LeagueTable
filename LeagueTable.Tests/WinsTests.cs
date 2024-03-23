@@ -15,14 +15,7 @@ namespace LeagueTable.Tests
             // Arrange
             var results = new List<Result>()
             {
-                new Result()
-                {
-                    AwayTeamId = 1,
-                    AwayScore = 0,
-                    HomeTeamId = 2,
-                    HomeScore = 1,
-                    Type = ResultEnum.Regulation
-                }
+                HomeTeamRegulationWin()
             };
 
             var tableEntry = new TableEntry(2, results);
@@ -37,12 +30,16 @@ namespace LeagueTable.Tests
             var results = new List<Result>()
             {
                 new Result()
+        private static Result HomeTeamRegulationWin()
                 {
+            return new Result()
+            {
                     AwayTeamId = 1,
                     AwayScore = 0,
                     HomeTeamId = 2,
                     HomeScore = 1,
                     Type = ResultEnum.Regulation
+            };
                 }
             };
 
