@@ -1,21 +1,25 @@
 ﻿using System;
+
+using CommunityToolkit.Diagnostics;
+
 using FluentAssertions;
+
 using LeagueTable.Domain;
 
 namespace LeagueTable.Tests
 {
-	public class WinsTests
-	{
-		public WinsTests()
-		{
-		}
+    public class WinsTests
+    {
+        public WinsTests()
+        {
+        }
         [Fact]
         public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_Win_For_Home_Team()
         {
             // Arrange
             var results = new List<Result>()
-            { 
-                HomeTeamRegulationWin()
+            {
+                new ResultBuilder().HomeRegulationWin(2, 1).Build()
             };
 
             var tableEntry = new TableEntry(2, results);
@@ -30,7 +34,7 @@ namespace LeagueTable.Tests
             // Arrange
             var results = new List<Result>()
             {
-                HomeTeamRegulationWin()
+                new ResultBuilder().HomeRegulationWin(2, 1).Build()
             };
 
             var tableEntry = new TableEntry(1, results);
@@ -45,36 +49,95 @@ namespace LeagueTable.Tests
             // Arrange
             var results = new List<Result>()
             {
-                HomeTeamRegulationWin(),
-                AwayTeamRegulationWin()
+                new ResultBuilder().HomeRegulationWin(2, 1).Build(),
+                new ResultBuilder().AwayRegulationWin(2, 1).Build()
             };
 
             var tableEntry = new TableEntry(2, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(0);
+            tableEntry.Wins.Should().Be(2);
         }
 
-        private static Result HomeTeamRegulationWin()
+    }
+
+    internal class ResultBuilder
+    {
+        private int HomeTeamId;
+        private int AwayTeamId;
+        private int HomeScore;
+        private int AwayScore;
+        private ResultEnum? Type;
+        public ResultBuilder() { }
+
+        public ResultBuilder HomeRegulationWin(int homeId, int awayId)
         {
-            return new Result()
-            {
-                AwayTeamId = 1,
-                AwayScore = 0,
-                HomeTeamId = 2,
-                HomeScore = 1,
-                Type = ResultEnum.Regulation
-            };
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Regulation;
+            return this;
         }
-        private static Result AwayTeamRegulationWin()
+        public ResultBuilder HomeOvertimeWin(int homeId, int awayId)
         {
-            return new Result()
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Overtime;
+            return this;
+        }
+        public ResultBuilder RegulationWin(int homeId, int homeGoals, int awayId, int awayGoals)
+        {
+            Guard.IsTrue(homeGoals > awayGoals);
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Regulation;
+            return this;
+        }
+
+        public ResultBuilder AwayRegulationWin(int homeId, int awayId)
+        {
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Regulation;
+            return this;
+        }
+        public ResultBuilder AwayOvertimeWin(int homeId, int awayId)
+        {
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Overtime;
+            return this;
+        }
+
+        public ResultBuilder OvertimeWin(int homeId, int homeGoals, int awayId, int awayGoals)
+        {
+            Guard.IsTrue(homeGoals > awayGoals);
+            HomeTeamId = homeId;
+            AwayTeamId = awayId;
+            HomeScore = 1;
+            AwayScore = 0;
+            Type = ResultEnum.Overtime;
+            return this;
+        }
+        public Result Build()
+        {
+            Guard.IsNotNull(Type);
+            return new Result
             {
-                AwayTeamId = 2,
-                AwayScore = 1,
-                HomeTeamId = 1,
-                HomeScore = 0,
-                Type = ResultEnum.Regulation
+                HomeScore = HomeScore,
+                HomeTeamId = HomeTeamId,
+                AwayScore = AwayScore,
+                AwayTeamId = AwayTeamId,
+                Type = Type
             };
         }
     }
