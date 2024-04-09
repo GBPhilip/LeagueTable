@@ -52,7 +52,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(2, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(0);
+            tableEntry.Wins.Should().Be(2);
         }
 
         private static Result HomeTeamRegulationWin()
