@@ -64,6 +64,8 @@ namespace LeagueTable.Domain
         /// A method to calculate the number of wins in regulation time for the team
         /// </summary>
         /// <returns>An integer</returns>
-        private int CalculateWins() => _results.HomeWinsInRegulation(TeamId).Count() + 1;
+        private int CalculateWins() =>
+            _results.HomeWinsInRegulation(TeamId).Count()
+          + _results.AwayWinsInRegulation(TeamId).Count();
     }
 }
