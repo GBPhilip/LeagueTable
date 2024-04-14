@@ -20,8 +20,8 @@ namespace LeagueTable.Domain
             TeamId = teamId;
             _results = results;
 
-            Wins = CalculateWins();
-            OvertimeWins = CalculateWins();
+            Wins = CalculateRegulationWins();
+            OvertimeWins = CalculateOvertimeWins();
         }
 
         /// <summary>
@@ -65,8 +65,15 @@ namespace LeagueTable.Domain
         /// A method to calculate the number of wins in regulation time for the team
         /// </summary>
         /// <returns>An integer</returns>
-        private int CalculateWins() =>
+        private int CalculateRegulationWins() =>
             _results.HomeWinsInRegulation(TeamId).Count()
           + _results.AwayWinsInRegulation(TeamId).Count();
+        /// <summary>
+        /// A method to calculate the number of wins in overtime time for the team
+        /// </summary>
+        /// <returns>An integer</returns>
+        private int CalculateOvertimeWins() =>
+            _results.HomeWinsInOvertime(TeamId).Count()
+          + _results.AwayWinsInOvertime(TeamId).Count();
     }
 }
