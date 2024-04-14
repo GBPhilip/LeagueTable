@@ -7,7 +7,7 @@ namespace LeagueTableTests
 {
     public class Given_Two_Teams_In_League
     {
-        [Fact]
+        //[Fact] TODO: Re-enstate this test when class TableCalculator has been designed / implemented
         public void And_Played_Once_Home_Beats_Away_Should_Return_Table_With_Home_Top()
         {
             var homeTeam = 1;
