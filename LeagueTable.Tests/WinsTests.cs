@@ -86,13 +86,17 @@ namespace LeagueTable.Tests
             // Assert
             tableEntry.Wins.Should().Be(1);
         }
+
+        const int RED_TEAM = 1;
+        const int BLUE_TEAM = 2;
+        
         private static Result HomeTeamRegulationWin()
         {
             return new Result()
             {
-                AwayTeamId = 1,
+                AwayTeamId = RED_TEAM,
                 AwayScore = 0,
-                HomeTeamId = 2,
+                HomeTeamId = BLUE_TEAM,
                 HomeScore = 1,
                 Type = ResultEnum.Regulation
             };
@@ -101,9 +105,9 @@ namespace LeagueTable.Tests
         {
             return new Result()
             {
-                AwayTeamId = 2,
+                AwayTeamId = BLUE_TEAM,
                 AwayScore = 1,
-                HomeTeamId = 1,
+                HomeTeamId = RED_TEAM,
                 HomeScore = 0,
                 Type = ResultEnum.Regulation
             };
@@ -113,9 +117,9 @@ namespace LeagueTable.Tests
         {
             return new Result()
             {
-                AwayTeamId = 1,
+                AwayTeamId = RED_TEAM,
                 AwayScore = 0,
-                HomeTeamId = 2,
+                HomeTeamId = BLUE_TEAM,
                 HomeScore = 1,
                 Type = ResultEnum.Overtime
             };
@@ -124,9 +128,9 @@ namespace LeagueTable.Tests
         {
             return new Result()
             {
-                AwayTeamId = 2,
+                AwayTeamId = BLUE_TEAM,
                 AwayScore = 1,
-                HomeTeamId = 1,
+                HomeTeamId = RED_TEAM,
                 HomeScore = 0,
                 Type = ResultEnum.Overtime
             };
