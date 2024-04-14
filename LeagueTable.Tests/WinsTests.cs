@@ -57,6 +57,8 @@ namespace LeagueTable.Tests
 
             // Assert
             tableEntry.Wins.Should().Be(2);
+
+            var x=new ResultBuilder().WithHomeTeam(1).WithAwayTeam(1).Build();
         }
 
     }
@@ -69,6 +71,20 @@ namespace LeagueTable.Tests
         private int AwayScore;
         private ResultEnum? Type;
         public ResultBuilder() { }
+
+        public ResultBuilder WithHomeTeam(int id)
+        {
+            Guard.IsNotEqualTo(id,AwayTeamId);
+            HomeTeamId = id;
+            return this;
+        }
+        
+        public ResultBuilder WithAwayTeam(int id)
+        {
+            Guard.IsNotEqualTo(id, HomeTeamId);
+            AwayTeamId = id;
+            return this;
+        }
 
         public ResultBuilder HomeRegulationWin(int homeId, int awayId)
         {
@@ -90,7 +106,7 @@ namespace LeagueTable.Tests
         }
         public ResultBuilder RegulationWin(int homeId, int homeGoals, int awayId, int awayGoals)
         {
-            Guard.IsTrue(homeGoals > awayGoals);
+            Guard.IsGreaterThan(homeGoals, awayGoals);
             HomeTeamId = homeId;
             AwayTeamId = awayId;
             HomeScore = 1;
