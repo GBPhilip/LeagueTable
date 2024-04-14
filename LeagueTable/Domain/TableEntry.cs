@@ -21,6 +21,7 @@ namespace LeagueTable.Domain
             _results = results;
 
             Wins = CalculateWins();
+            OvertimeWins = CalculateWins();
         }
 
         /// <summary>
