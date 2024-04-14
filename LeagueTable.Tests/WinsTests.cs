@@ -71,6 +71,21 @@ namespace LeagueTable.Tests
             tableEntry.OvertimeWins.Should().Be(2);
         }
 
+        [Fact]
+        public void When_Team_Plays_Two_Home_And_Scores_More_Goals_In_Both_One_Regulation_One_Overtime_Team_Should_Have_One_Regulation_Wins()
+        {
+            // Arrange
+            var results = new List<Result>()
+            {
+                HomeTeamRegulationWin(),
+                HomeTeamOvertimeWin()
+            };
+
+            var tableEntry = new TableEntry(2, results);
+
+            // Assert
+            tableEntry.Wins.Should().Be(1);
+        }
         private static Result HomeTeamRegulationWin()
         {
             return new Result()
