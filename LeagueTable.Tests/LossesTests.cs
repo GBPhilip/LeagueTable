@@ -24,7 +24,7 @@ namespace LeagueTable.Tests
             tableEntry.Losses.Should().Be(1);
         }
         [Fact]
-        public void When_Two_Matches_Played_And_Both_Times_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_Loss_For_Away_Team()
+        public void When_Two_Matches_Played_And_Both_Times_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_Two_Losses_For_Away_Team()
         {
             // Arrange
             var results = new List<Result>()
