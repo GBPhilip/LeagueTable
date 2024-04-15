@@ -33,7 +33,7 @@ namespace LeagueTable.Tests
                 HomeTeamRegulationWin()
             };
 
-            var tableEntry = new TableEntry(2, results);
+            var tableEntry = new TableEntry(1, results);
 
             // Assert
             tableEntry.Losses.Should().Be(2);
