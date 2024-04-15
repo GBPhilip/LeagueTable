@@ -22,6 +22,7 @@ namespace LeagueTable.Domain
 
             Wins = CalculateRegulationWins();
             OvertimeWins = CalculateOvertimeWins();
+            Losses = 1;
         }
 
         /// <summary>
