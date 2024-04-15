@@ -23,6 +23,21 @@ namespace LeagueTable.Tests
             // Assert
             tableEntry.Losses.Should().Be(1);
         }
+        [Fact]
+        public void When_Two_Matches_Played_And_Both_Times_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_Loss_For_Away_Team()
+        {
+            // Arrange
+            var results = new List<Result>()
+            {
+                HomeTeamRegulationWin(),
+                HomeTeamRegulationWin()
+            };
+
+            var tableEntry = new TableEntry(2, results);
+
+            // Assert
+            tableEntry.Losses.Should().Be(2);
+        }
         const int RED_TEAM = 1;
         const int BLUE_TEAM = 2;
         
