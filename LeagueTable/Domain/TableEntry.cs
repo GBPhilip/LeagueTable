@@ -31,7 +31,7 @@ namespace LeagueTable.Domain
         public int TeamId { get; set; }
 
         /// <summary>
-        /// The number of wins by a team in regulatory time
+        /// The number of wins by a team in regulation time
         /// </summary>
         public int RegulationWins { get; set; }
         /// <summary>
