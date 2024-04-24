@@ -17,7 +17,7 @@ namespace LeagueTable.Tests
 			var tableEntry = new TableEntry()
 			{
 				TeamId = 2,
-				Wins = 1
+				RegulationWins = 1
 			};
 
 			// Assert
@@ -31,7 +31,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 TeamId = 2,
-                Wins = 2
+                RegulationWins = 2
             };
 
             // Assert

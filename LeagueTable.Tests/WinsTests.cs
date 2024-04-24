@@ -21,7 +21,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(2, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(1);
+            tableEntry.RegulationWins.Should().Be(1);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(1, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(0);
+            tableEntry.RegulationWins.Should().Be(0);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(2, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(2);
+            tableEntry.RegulationWins.Should().Be(2);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(2, results);
 
             // Assert
-            tableEntry.Wins.Should().Be(1);
+            tableEntry.RegulationWins.Should().Be(1);
         }
 
         const int RED_TEAM = 1;
