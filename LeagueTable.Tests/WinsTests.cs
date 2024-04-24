@@ -4,9 +4,9 @@ using LeagueTable.Domain;
 
 namespace LeagueTable.Tests
 {
-	public class WinsTests
+	public class RegulationWinsTests
 	{
-		public WinsTests()
+		public RegulationWinsTests()
 		{
 		}
         [Fact]
