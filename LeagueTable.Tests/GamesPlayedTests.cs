@@ -15,7 +15,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 RegulationWins = 1,
-                Losses = 0,
+                RegulationLosses = 0,
                 OvertimeWins = 0,
                 OvertimeLosses = 0
             };
@@ -31,7 +31,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 RegulationWins = 2,
-                Losses = 0,
+                RegulationLosses = 0,
                 OvertimeWins = 0,
                 OvertimeLosses = 0
             };
@@ -47,7 +47,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 RegulationWins = 0,
-                Losses = 1,
+                RegulationLosses = 1,
                 OvertimeWins = 0,
                 OvertimeLosses = 0
             };
@@ -63,7 +63,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry()
             {
                 RegulationWins = 0,
-                Losses = 0,
+                RegulationLosses = 0,
                 OvertimeWins = 0,
                 OvertimeLosses = 1
             };

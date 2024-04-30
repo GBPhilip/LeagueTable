@@ -25,7 +25,7 @@ namespace LeagueTableTests
             {
                 TeamId = homeTeam,
                 RegulationWins = 1,
-                Losses = 0,
+                RegulationLosses = 0,
                 OvertimeLosses = 0,
                 OvertimeWins = 0,
                 GoalsConceded = 0,
@@ -35,7 +35,7 @@ namespace LeagueTableTests
             {
                 TeamId = awayTeam,
                 RegulationWins = 0,
-                Losses = 1,
+                RegulationLosses = 1,
                 OvertimeLosses = 0,
                 OvertimeWins = 0,
                 GoalsConceded = 1,

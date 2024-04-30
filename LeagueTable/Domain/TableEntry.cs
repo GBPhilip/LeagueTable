@@ -22,7 +22,7 @@ namespace LeagueTable.Domain
 
             RegulationWins = CalculateRegulationWins();
             OvertimeWins = CalculateOvertimeWins();
-            Losses = CalculateRegulationLosses();
+            RegulationLosses = CalculateRegulationLosses();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace LeagueTable.Domain
         /// <summary>
         /// The number of losses by a team in regulatory time
         /// </summary>
-        public int Losses { get; set; }
+        public int RegulationLosses { get; set; }
         /// <summary>
         /// The number of goals scored by a team at the end of a game
         /// </summary>
@@ -61,7 +61,7 @@ namespace LeagueTable.Domain
         /// <summary>
         /// The number of games played by the team
         /// </summary>
-        public int Played { get => RegulationWins + Losses + OvertimeWins + OvertimeLosses; }
+        public int Played { get => RegulationWins + RegulationLosses + OvertimeWins + OvertimeLosses; }
         /// <summary>
         /// A method to calculate the number of wins in regulation time for the team
         /// </summary>
