@@ -24,7 +24,7 @@ namespace LeagueTableTests
             var topTeam = new TableEntry
             {
                 TeamId = homeTeam,
-                Wins = 1,
+                RegulationWins = 1,
                 Losses = 0,
                 OvertimeLosses = 0,
                 OvertimeWins = 0,
@@ -34,7 +34,7 @@ namespace LeagueTableTests
             var bottomTeam = new TableEntry
             {
                 TeamId = awayTeam,
-                Wins = 0,
+                RegulationWins = 0,
                 Losses = 1,
                 OvertimeLosses = 0,
                 OvertimeWins = 0,

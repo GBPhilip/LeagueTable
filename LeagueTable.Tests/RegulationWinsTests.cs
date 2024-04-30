@@ -10,7 +10,7 @@ namespace LeagueTable.Tests
 		{
 		}
         [Fact]
-        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_Win_For_Home_Team()
+        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_RegulationWin_For_Home_Team()
         {
             // Arrange
             var results = new List<Result>()
@@ -18,14 +18,16 @@ namespace LeagueTable.Tests
                 HomeTeamRegulationWin()
             };
 
-            var tableEntry = new TableEntry(2, results);
+            var homeTeam = BLUE_TEAM;
+
+            var tableEntry = new TableEntry(homeTeam, results);
 
             // Assert
             tableEntry.RegulationWins.Should().Be(1);
         }
 
         [Fact]
-        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_No_Wins_For_Away_Team()
+        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_No_RegulationWins_For_Away_Team()
         {
             // Arrange
             var results = new List<Result>()
@@ -33,14 +35,17 @@ namespace LeagueTable.Tests
                 HomeTeamRegulationWin()
             };
 
-            var tableEntry = new TableEntry(1, results);
+            var awayTeam = RED_TEAM;
+
+            // Action
+            var tableEntry = new TableEntry(awayTeam, results);
 
             // Assert
             tableEntry.RegulationWins.Should().Be(0);
         }
 
         [Fact]
-        public void When_Team_Plays_One_Home_And_One_Away_And_Scores_More_Goals_In_Both_Team_Should_Have_Two_Wins()
+        public void When_Blue_Team_Plays_One_Home_And_One_Away_And_Scores_More_Goals_In_Regulation_Time_In_Both_Matches_Blue_Team_Should_Have_Two_Regulation_Wins()
         {
             // Arrange
             var results = new List<Result>()
@@ -49,7 +54,7 @@ namespace LeagueTable.Tests
                 AwayTeamRegulationWin()
             };
 
-            var tableEntry = new TableEntry(2, results);
+            var tableEntry = new TableEntry(BLUE_TEAM, results);
 
             // Assert
             tableEntry.RegulationWins.Should().Be(2);
