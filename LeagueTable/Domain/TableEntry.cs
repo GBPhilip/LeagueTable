@@ -47,11 +47,11 @@ namespace LeagueTable.Domain
         /// </summary>
         public int Losses { get; set; }
         /// <summary>
-        /// The number of wins by a team in regulatory time
+        /// The number of goals scored by a team at the end of a game
         /// </summary>
         public int GoalsScored { get; set; }
         /// <summary>
-        /// The number of wins by a team in regulatory time
+        /// The number of goals conceded by a team at the end of a game
         /// </summary>
         public int GoalsConceded { get; set; }
         /// <summary>

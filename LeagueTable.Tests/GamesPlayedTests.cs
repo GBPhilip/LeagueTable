@@ -25,7 +25,7 @@ namespace LeagueTable.Tests
         }
 
         [Fact]
-        public void When_Team_Has_Two_Wins_And_No_Other_Outcomes_Should_Have_Played_Two()
+        public void When_Team_Has_Two_RegulationWins_And_No_Other_Outcomes_Should_Have_Played_Two()
         {
             // Arrange
             var tableEntry = new TableEntry()

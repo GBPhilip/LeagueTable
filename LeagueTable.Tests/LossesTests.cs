@@ -42,7 +42,7 @@ namespace LeagueTable.Tests
         const int BLUE_TEAM = 2;
         
         [Fact]
-        public void When_Home_Score_Is_Greater_Than_Away_Score_Once_In_Regulation_Once_In_Overtime_Should_Return_Two_Loss_For_Away_Team()
+        public void When_Home_Score_Is_Greater_Than_Away_Score_Once_In_Regulation_Once_In_Overtime_Should_Return_One_Loss_For_Away_Team()
         {
             // Arrange
             var results = new List<Result>()
@@ -54,7 +54,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(RED_TEAM, results);
 
             // Assert
-            tableEntry.Losses.Should().Be(2);
+            tableEntry.Losses.Should().Be(1);
         }
         private static Result HomeTeamRegulationWin()
         {
