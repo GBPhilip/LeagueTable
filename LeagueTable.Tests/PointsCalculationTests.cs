@@ -25,7 +25,7 @@ namespace LeagueTable.Tests
 		}
 
 		[Fact]
-        public void When_Team_Has_Two_Wins_Should_Have_Six_Points()
+        public void When_Team_Has_Two_RegulationWins_Should_Have_Six_Points()
         {
             // Arrange
             var tableEntry = new TableEntry()
