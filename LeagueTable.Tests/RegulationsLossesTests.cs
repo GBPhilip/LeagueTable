@@ -10,7 +10,7 @@ namespace LeagueTable.Tests
 		{
 		}
         [Fact]
-        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_Loss_For_Away_Team()
+        public void When_Home_Score_Is_Greater_Than_Away_Score_And_Type_Is_Regulation_Should_Return_One_RegulationLoss_For_Away_Team()
         {
             // Arrange
             var results = new List<Result>()
@@ -42,7 +42,7 @@ namespace LeagueTable.Tests
         const int BLUE_TEAM = 2;
         
         [Fact]
-        public void When_Home_Score_Is_Greater_Than_Away_Score_Once_In_Regulation_Once_In_Overtime_Should_Return_One_Loss_For_Away_Team()
+        public void When_Home_Score_Is_Greater_Than_Away_Score_Once_In_Regulation_Once_In_Overtime_Should_Return_One_RegulationLoss_For_Away_Team()
         {
             // Arrange
             var results = new List<Result>()
