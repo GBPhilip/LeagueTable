@@ -26,7 +26,7 @@ namespace LeagueTable.Tests
             var tableEntry = new TableEntry(homeTeam, results);
 
             // Assert
-            tableEntry.RegulationLosses.Should().Be(1);
+            tableEntry.OvertimeWins.Should().Be(1);
         }
 
         private static Result HomeTeamOvertimeWin()
