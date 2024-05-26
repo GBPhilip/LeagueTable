@@ -23,6 +23,7 @@ namespace LeagueTable.Domain
             RegulationWins = CalculateRegulationWins();
             OvertimeWins = CalculateOvertimeWins();
             RegulationLosses = CalculateRegulationLosses();
+            OvertimeLosses = 1;
         }
 
         /// <summary>
@@ -83,6 +84,5 @@ namespace LeagueTable.Domain
         private int CalculateRegulationLosses() =>
             _results.HomeLossesInRegulation(TeamId).Count()
           + _results.AwayLossesInRegulation(TeamId).Count();
-          
     }
 }
