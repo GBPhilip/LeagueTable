@@ -38,14 +38,35 @@ namespace LeagueTable.Tests
                 HomeTeamOvertimeWin(),
                 HomeTeamOvertimeWin()
             };
+            var awayTeam = RED_TEAM;
+
+            //Act
+            var tableEntry = new TableEntry(awayTeam, results);
+
+            // Assert
+            tableEntry.OvertimeLosses.Should().Be(2);
+        }
+
+        [Fact]
+        public void When_Away_Score_Is_Greater_Than_Home_Score_And_Type_Is_Overtime_Should_Return_One_OvertimeLoss_For_Home_Team()
+        {
+            // Arrange
+
+            var awayTeam = RED_TEAM;
             var homeTeam = BLUE_TEAM;
+
+            var results = new List<Result>()
+            {
+                new ResultBuilder().HomeOvertimeLoss(homeTeam, awayTeam).Build()
+            };
 
             //Act
             var tableEntry = new TableEntry(homeTeam, results);
 
             // Assert
-            tableEntry.OvertimeLosses.Should().Be(2);
+            tableEntry.OvertimeLosses.Should().Be(1);
         }
+
 
 
         private static Result HomeTeamOvertimeWin()

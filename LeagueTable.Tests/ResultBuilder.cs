@@ -66,10 +66,15 @@ internal class ResultBuilder
     {
         HomeTeamId = homeId;
         AwayTeamId = awayId;
-        HomeScore = 1;
-        AwayScore = 0;
+        HomeScore = 0;
+        AwayScore = 1;
         Type = ResultEnum.Overtime;
         return this;
+    }
+
+    public ResultBuilder HomeOvertimeLoss(int homeId, int awayId)
+    {
+        return AwayOvertimeWin(homeId, awayId);
     }
 
     public ResultBuilder OvertimeWin(int homeId, int homeGoals, int awayId, int awayGoals)
