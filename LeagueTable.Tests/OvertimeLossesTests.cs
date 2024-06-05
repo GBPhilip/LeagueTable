@@ -20,10 +20,10 @@ namespace LeagueTable.Tests
             {
                 HomeTeamOvertimeWin()
             };
-            var homeTeam = BLUE_TEAM;
+            var awayTeam = RED_TEAM;
 
             //Act
-            var tableEntry = new TableEntry(homeTeam, results);
+            var tableEntry = new TableEntry(awayTeam, results);
 
             // Assert
             tableEntry.OvertimeLosses.Should().Be(1);
