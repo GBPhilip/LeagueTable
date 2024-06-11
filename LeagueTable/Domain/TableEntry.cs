@@ -50,7 +50,7 @@ namespace LeagueTable.Domain
         /// <summary>
         /// The number of goals scored by a team at the end of a game
         /// </summary>
-        public int GoalsScored => _results.Where(x => x.HomeTeamId == TeamId).Single().HomeScore;
+        public int GoalsScored => _results.Where(x => x.HomeTeamId == TeamId).Sum(x => x.HomeScore);
         /// The number of goals conceded by a team at the end of a game
         /// </summary>
         /// 
