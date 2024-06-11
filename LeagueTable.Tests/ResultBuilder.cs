@@ -77,8 +77,8 @@ internal class ResultBuilder
     {
         HomeTeamId = homeId;
         AwayTeamId = awayId;
-        HomeScore = 1;
-        AwayScore = 0;
+        HomeScore = 0;
+        AwayScore = 1;
         Type = ResultEnum.Regulation;
         return this;
     }
