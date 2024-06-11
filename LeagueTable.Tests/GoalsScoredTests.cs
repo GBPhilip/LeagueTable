@@ -79,5 +79,27 @@ namespace LeagueTable.Tests
             // Assert
             tableEntry.GoalsScored.Should().Be(3);
         }
+
+
+        [Fact]
+        public void When_Away_Team_Scores_A_Goal_Should_Return_One_As_GoalsScored_For_Away_Team()
+        {
+            // Arrange
+            var awayTeam = RED_TEAM;
+            var results = new List<Result>()
+            {
+                new ResultBuilder()
+                .WithAwayTeam(awayTeam)
+                .WithAwayGoals(1)
+                .WithType(ResultEnum.Overtime)
+                .Build()
+            };
+
+            //Act
+            var tableEntry = new TableEntry(awayTeam, results);
+
+            // Assert
+            tableEntry.GoalsScored.Should().Be(1);
+        }
     }
 }

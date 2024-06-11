@@ -24,6 +24,13 @@ internal class ResultBuilder
         return this;
     }
 
+    public ResultBuilder WithAwayGoals(int goals)
+    {
+        Guard.IsGreaterThanOrEqualTo(goals, 0);
+        AwayScore = goals;
+        return this;
+    }
+
     public ResultBuilder WithAwayTeam(int id)
     {
         Guard.IsNotEqualTo(id, HomeTeamId);
