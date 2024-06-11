@@ -12,16 +12,8 @@ namespace LeagueTableTests
         {
             var homeTeam = 1;
             var awayTeam = 2;
-            var matchResult = new Result() 
-            {
-                HomeTeamId = homeTeam,
-                HomeScore = 1,
-                AwayTeamId = awayTeam,
-                AwayScore = 0,
-                Type = ResultEnum.Regulation
-            };
-        
-         
+            var matchResult = new ResultBuilder().HomeRegulationWin(homeTeam, awayTeam).Build();
+
             var expectedTeamOrder = new List<int> { homeTeam, awayTeam };
             var sut = new TableCalculator();
 
