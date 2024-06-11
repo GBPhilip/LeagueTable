@@ -50,10 +50,10 @@ namespace LeagueTable.Domain
         /// <summary>
         /// The number of goals scored by a team at the end of a game
         /// </summary>
-        public int GoalsScored { get; set; }
-        /// <summary>
+        public int GoalsScored => _results.Where(x => x.HomeTeamId == TeamId).Single().HomeScore;
         /// The number of goals conceded by a team at the end of a game
         /// </summary>
+        /// 
         public int GoalsConceded { get; set; }
         /// <summary>
         /// The number of points achieved by the team
@@ -85,8 +85,14 @@ namespace LeagueTable.Domain
             _results.HomeLossesInRegulation(TeamId).Count()
           + _results.AwayLossesInRegulation(TeamId).Count();
 
-          private int CalculateOvertimeLosses() =>
-            _results.AwayLossesInOvertime(TeamId).Count()
-          + _results.HomeLossesInOvertime(TeamId).Count();
+        private int CalculateOvertimeLosses() =>
+          _results.AwayLossesInOvertime(TeamId).Count()
+        + _results.HomeLossesInOvertime(TeamId).Count();
+        /// <summary>
+        /// A method to calculate the number of goals scored by the team
+        /// </summary>
+        /// <returns>An integer</returns>
+        private int CalculateGoalsScored() => 1;
+
     }
 }

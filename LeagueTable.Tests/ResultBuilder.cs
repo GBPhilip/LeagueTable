@@ -17,6 +17,13 @@ internal class ResultBuilder
         return this;
     }
 
+    public ResultBuilder WithHomeGoals(int goals)
+    {
+        Guard.IsGreaterThanOrEqualTo(goals,0);
+        HomeScore = goals;
+        return this;
+    }
+
     public ResultBuilder WithAwayTeam(int id)
     {
         Guard.IsNotEqualTo(id, HomeTeamId);
@@ -24,6 +31,12 @@ internal class ResultBuilder
         return this;
     }
 
+    public ResultBuilder WithType(ResultEnum type)
+    {
+        Guard.IsNotNull(type);
+        Type = type;
+        return this;
+    }
     public ResultBuilder HomeRegulationWin(int homeId, int awayId)
     {
         HomeTeamId = homeId;

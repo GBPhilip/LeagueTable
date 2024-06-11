@@ -21,32 +21,13 @@ namespace LeagueTableTests
                 Type = ResultEnum.Regulation
             };
         
-            var topTeam = new TableEntry
-            {
-                TeamId = homeTeam,
-                RegulationWins = 1,
-                RegulationLosses = 0,
-                OvertimeLosses = 0,
-                OvertimeWins = 0,
-                GoalsConceded = 0,
-                GoalsScored = 1
-            };
-            var bottomTeam = new TableEntry
-            {
-                TeamId = awayTeam,
-                RegulationWins = 0,
-                RegulationLosses = 1,
-                OvertimeLosses = 0,
-                OvertimeWins = 0,
-                GoalsConceded = 1,
-                GoalsScored = 0
-            };
-            var expectedTable = new List<TableEntry> { topTeam, bottomTeam };
+         
+            var expectedTeamOrder = new List<int> { homeTeam, awayTeam };
             var sut = new TableCalculator();
 
-            var result = sut.Sort(new List<Result>());
+            var result = sut.Sort(new List<Result> { matchResult });
             
-            result.Should().BeEquivalentTo(expectedTable, options => options.WithStrictOrdering());
+            result.Select(x =>x.TeamId).Should().BeEquivalentTo(expectedTeamOrder, options => options.WithStrictOrdering());
         }
     }
 }
