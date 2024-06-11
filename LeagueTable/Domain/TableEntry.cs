@@ -55,7 +55,8 @@ namespace LeagueTable.Domain
         /// The number of goals conceded by a team at the end of a game
         /// </summary>
         /// 
-        public int GoalsConceded { get; set; }
+        public int GoalsConceded => _results.Where(x => x.HomeTeamId == TeamId).Sum(x => x.AwayScore) +
+                                  +_results.Where(x => x.AwayTeamId == TeamId).Sum(x => x.HomeScore);
         /// <summary>
         /// The number of points achieved by the team
         /// </summary>
