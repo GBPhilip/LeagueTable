@@ -1,6 +1,31 @@
-﻿using CommunityToolkit.Diagnostics;
+﻿using AutoFixture;
+
+using CommunityToolkit.Diagnostics;
 using LeagueTable.Domain;
 
+internal class ResultBuilder2
+{
+    private readonly IFixture _fixture;
+    public ResultBuilder2(IFixture fixture)
+    {
+        _fixture = fixture;
+    }
+    public Result HomeRegulationWin(int homeId, int awayId)
+    {
+        Guard.IsNotEqualTo(homeId, awayId);
+        var generator = _fixture.Create<Generator<int>>();
+        var homeScore = _fixture.Create<int>();
+        var awayScore = generator.Where(x => x < homeScore).First();
+        return _fixture.Build<Result>()
+            .With(x => x.HomeTeamId, homeId)
+            .With(x => x.AwayTeamId, awayId)
+            .With(x => x.HomeScore, homeScore)
+            .With(x => x.AwayScore, awayScore)
+            .With(x => x.Type, ResultEnum.Regulation)
+            .Create();
+    }
+
+}
 internal class ResultBuilder
 {
     private int HomeTeamId;

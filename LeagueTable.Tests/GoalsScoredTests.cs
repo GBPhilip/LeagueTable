@@ -26,8 +26,9 @@ namespace LeagueTable.Tests
                 .Build()
             };
 
-            //Act
-            var tableEntry = new TableEntry(homeTeam, results);
+
+           //Act
+           var tableEntry = new TableEntry(homeTeam, results);
 
             // Assert
             tableEntry.GoalsScored.Should().Be(1);

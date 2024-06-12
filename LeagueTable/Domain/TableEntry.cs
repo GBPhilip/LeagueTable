@@ -90,11 +90,5 @@ namespace LeagueTable.Domain
         private int CalculateOvertimeLosses() =>
           _results.AwayLossesInOvertime(TeamId).Count()
         + _results.HomeLossesInOvertime(TeamId).Count();
-        /// <summary>
-        /// A method to calculate the number of goals scored by the team
-        /// </summary>
-        /// <returns>An integer</returns>
-        private int CalculateGoalsScored() => 1;
-
     }
 }

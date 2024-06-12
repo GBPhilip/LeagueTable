@@ -1,5 +1,9 @@
-﻿using FluentAssertions;
+﻿using AutoFixture;
+
+using FluentAssertions;
 using LeagueTable.Domain;
+
+using Ardalis.SmartEnum.AutoFixture;
 
 namespace LeagueTable.Tests
 {
@@ -25,7 +29,9 @@ namespace LeagueTable.Tests
                 .WithType(ResultEnum.Overtime)
                 .Build()
             };
-
+            var fix = new Fixture().Customize(new SmartEnumCustomization());
+            var x = fix.Build<Result>().With(x => x.HomeTeamId, homeTeam).With(x => x.AwayScore, 1).Create();
+            var result1 = new ResultBuilder2(fix).HomeRegulationWin(homeTeam, 2);
             //Act
             var tableEntry = new TableEntry(homeTeam, results);
 
