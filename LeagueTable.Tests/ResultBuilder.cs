@@ -10,12 +10,102 @@ internal class ResultBuilder2
     {
         _fixture = fixture;
     }
+
+    private Result Win(int teamId, ResultEnum type)
+    {
+        Guard.IsNotEqualTo(teamId, 0);
+        var generator = _fixture.Create<Generator<int>>();
+        var homeScore = _fixture.Create<int>();
+        var awayScore = generator.Where(x => x != homeScore).First();
+        int homeId;
+        int awayId;
+        if (homeScore > awayScore)
+        {
+            homeId = teamId;
+            awayId = generator.Where(x => x != homeId).First(); ;
+        }
+        else
+        {
+            awayId = teamId;
+            homeId = generator.Where(x => x != awayId).First(); ;
+        }
+        return _fixture.Build<Result>()
+            .With(x => x.HomeTeamId, homeId)
+            .With(x => x.AwayTeamId, awayId)
+            .With(x => x.HomeScore, homeScore)
+            .With(x => x.AwayScore, awayScore)
+            .With(x => x.Type, type)
+            .Create();
+    }
+    public Result RegulationWin(int teamId)
+    {
+        return Win(teamId, ResultEnum.Regulation);
+    }
+
+    public Result OvertimeWin(int teamId)
+    {
+        return Win(teamId, ResultEnum.Overtime);
+    }
+
+    public Result OvertimeLoss(int teamId)
+    {
+        return Loss(teamId, ResultEnum.Overtime);
+    }
+
+    public Result RegulationLoss(int teamId)
+    {
+        return Loss(teamId, ResultEnum.Regulation);
+    }
+
+    private Result Loss(int teamId, ResultEnum type)
+    {
+        Guard.IsNotEqualTo(teamId, 0);
+        var generator = _fixture.Create<Generator<int>>();
+        var homeScore = _fixture.Create<int>();
+        var awayScore = generator.Where(x => x != homeScore).First();
+        int homeId;
+        int awayId;
+        if (homeScore < awayScore)
+        {
+            homeId = teamId;
+            awayId = generator.Where(x => x != homeId).First(); ;
+        }
+        else
+        {
+            awayId = teamId;
+            homeId = generator.Where(x => x != awayId).First(); ;
+        }
+        return _fixture.Build<Result>()
+            .With(x => x.HomeTeamId, homeId)
+            .With(x => x.AwayTeamId, awayId)
+            .With(x => x.HomeScore, homeScore)
+            .With(x => x.AwayScore, awayScore)
+            .With(x => x.Type, type)
+            .Create();
+    }
+
+
     public Result HomeRegulationWin(int homeId, int awayId)
     {
         Guard.IsNotEqualTo(homeId, awayId);
         var generator = _fixture.Create<Generator<int>>();
         var homeScore = _fixture.Create<int>();
         var awayScore = generator.Where(x => x < homeScore).First();
+        return _fixture.Build<Result>()
+            .With(x => x.HomeTeamId, homeId)
+            .With(x => x.AwayTeamId, awayId)
+            .With(x => x.HomeScore, homeScore)
+            .With(x => x.AwayScore, awayScore)
+            .With(x => x.Type, ResultEnum.Regulation)
+            .Create();
+    }
+
+    public Result HomeRegulationLoss(int homeId, int awayId)
+    {
+        Guard.IsNotEqualTo(homeId, awayId);
+        var generator = _fixture.Create<Generator<int>>();
+        var homeScore = _fixture.Create<int>();
+        var awayScore = generator.Where(x => x > homeScore).First();
         return _fixture.Build<Result>()
             .With(x => x.HomeTeamId, homeId)
             .With(x => x.AwayTeamId, awayId)
