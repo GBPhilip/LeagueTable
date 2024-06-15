@@ -182,8 +182,8 @@ internal class ResultBuilder
         Guard.IsGreaterThan(homeGoals, awayGoals);
         HomeTeamId = homeId;
         AwayTeamId = awayId;
-        HomeScore = 1;
-        AwayScore = 0;
+        HomeScore = homeGoals;
+        AwayScore = awayGoals;
         Type = ResultEnum.Regulation;
         return this;
     }

@@ -36,11 +36,24 @@ namespace LeagueTableTests
             result.First().TeamId.Should().Be(redTeam);
         }
 
-        //[Fact]
-        //public void And_Played_Once_Each_Team_Once_Red_Teams_Wins1()
-        //{
-        //    Result.First().TeamId.Should().Be(redTeam);
-        //}
+        [Theory]
+        [ClassData(typeof(TestResultGenerator))]
+        public void And_Played_Once_Each_Team_Once_Blue_Teams_Finishes_Second(List<Result> matchResults)
+        {
+            var sut = new TableCalculator();
+
+            var result = sut.Sort(matchResults);
+            result.Skip(1).Take(1).First().TeamId.Should().Be(blueTeam);
+        }
+        [Theory]
+        [ClassData(typeof(TestResultGenerator))]
+        public void And_Played_Once_Each_Team_Once_Green_Teams_Finishes_Last(List<Result> matchResults)
+        {
+            var sut = new TableCalculator();
+
+            var result = sut.Sort(matchResults);
+            result.Last().TeamId.Should().Be(greenTeam);
+        }
     }
 
     public class TestResultGenerator : IEnumerable<object[]>
@@ -57,7 +70,7 @@ namespace LeagueTableTests
             var greenWin = new ResultBuilder().RegulationWin(greenTeam, 1, redTeam, 0).Build();
 
             _data.Add(new object[] { new List<Result> { redWin, blueWin, greenWin } });
-            _data.Add(new object[] { new List<Result> { greenWin, blueWin, greenWin }});
+            _data.Add(new object[] { new List<Result> { greenWin, blueWin, redWin }});
             _data.Add(new object[] { new List<Result> { blueWin, redWin, greenWin } });
         }
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
