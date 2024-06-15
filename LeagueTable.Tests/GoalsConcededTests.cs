@@ -12,8 +12,11 @@ namespace LeagueTable.Tests
         const int RED_TEAM = 1;
         const int BLUE_TEAM = 2;
 
+        private IFixture _fixture;
+
         public GoalsConcededTests()
         {
+            _fixture = new Fixture().Customize(new SmartEnumCustomization());
         }
 
         [Fact]
@@ -23,13 +26,12 @@ namespace LeagueTable.Tests
             var homeTeam = RED_TEAM;
             var results = new List<Result>()
             {
-                new ResultBuilder()
-                .WithHomeTeam(homeTeam)
-                .WithAwayGoals(1)
-                .WithType(ResultEnum.Overtime)
-                .Build()
+                _fixture.Build<Result>()
+                .With(x => x.HomeTeamId, homeTeam)
+                .With(x => x.AwayScore, 1)
+                .Create()
             };
-            var fix = new Fixture().Customize(new SmartEnumCustomization());
+
             //Act
             var tableEntry = new TableEntry(homeTeam, results);
 
@@ -44,12 +46,12 @@ namespace LeagueTable.Tests
             var homeTeam = RED_TEAM;
             var results = new List<Result>()
             {
-                new ResultBuilder()
-                .WithHomeTeam(homeTeam)
-                .WithAwayGoals(2)
-                .WithType(ResultEnum.Overtime)
-                .Build()
+                _fixture.Build<Result>()
+                .With(x => x.HomeTeamId, homeTeam)
+                .With(x => x.AwayScore, 2)
+                .Create()
             };
+
 
             //Act
             var tableEntry = new TableEntry(homeTeam, results);
@@ -65,16 +67,14 @@ namespace LeagueTable.Tests
             var homeTeam = RED_TEAM;
             var results = new List<Result>()
             {
-                new ResultBuilder()
-                .WithHomeTeam(homeTeam)
-                .WithAwayGoals(2)
-                .WithType(ResultEnum.Overtime)
-                .Build(),
-                new ResultBuilder()
-                .WithHomeTeam(homeTeam)
-                .WithAwayGoals(1)
-                .WithType(ResultEnum.Overtime)
-                .Build()
+                _fixture.Build<Result>()
+                .With(x => x.HomeTeamId, homeTeam)
+                .With(x => x.AwayScore, 2)
+                .Create(),
+                _fixture.Build<Result>()
+                .With(x => x.HomeTeamId, homeTeam)
+                .With(x => x.AwayScore, 1)
+                .Create()
             };
 
             //Act
@@ -92,11 +92,10 @@ namespace LeagueTable.Tests
             var awayTeam = RED_TEAM;
             var results = new List<Result>()
             {
-                new ResultBuilder()
-                .WithAwayTeam(awayTeam)
-                .WithHomeGoals(1)
-                .WithType(ResultEnum.Overtime)
-                .Build()
+                _fixture.Build<Result>()
+                .With(x => x.AwayTeamId, awayTeam)
+                .With(x => x.HomeScore, 1)
+                .Create()
             };
 
             //Act
