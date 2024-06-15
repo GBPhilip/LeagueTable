@@ -5,7 +5,7 @@ namespace LeagueTable.Domain
     /// <summary>
     /// Specifies the type result
     /// </summary>
-    internal sealed class ResultEnum:SmartEnum<ResultEnum>
+    public sealed class ResultEnum:SmartEnum<ResultEnum>
     {
         /// <summary>
         /// The Regulation value should be used when the result occurred within regulation time

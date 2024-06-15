@@ -3,7 +3,7 @@
     /// <summary>
     /// Result stores the result of one game
     /// </summary>
-    internal class Result
+    public class Result
     {
         /// <summary>
         /// HomeTeamId is the key to reference which team was designated as the home team

@@ -7,9 +7,12 @@ namespace LeagueTable
         public TableCalculator() { }
         public List<TableEntry> Sort(List<Result> results)
         {
-            var firstTeam = new TableEntry(1, results);
-            var secondTeam = new TableEntry(2, results);
-            var tableEntries = new List<TableEntry> { firstTeam, secondTeam};
+            var teams = results.Select(x => x.HomeTeamId).Union(results.Select(x => x.AwayTeamId)).Distinct();
+            var tableEntries = new List<TableEntry>();
+            foreach (var team in teams)
+            {
+                tableEntries.Add(new TableEntry(team, results));
+            }
             return tableEntries.OrderByDescending(x => x.Points).ToList(); ;
         }
     }
