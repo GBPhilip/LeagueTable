@@ -5,7 +5,7 @@ using LeagueTable.Domain;
 
 namespace LeagueTableTests
 {
-    public class Given_Two_Teams_In_League
+    public class Teams_Ordered_By_Points
     {
         [Fact]
         public void And_Played_Once_Home_Beats_Away_Should_Return_Table_With_Home_Top()
