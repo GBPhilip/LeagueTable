@@ -62,7 +62,7 @@ namespace LeagueTableTests
         const int blueTeam = 2;
         const int greenTeam = 3;
 
-        private readonly List<object[]> _data = new List<object[]>();
+        private readonly List<object[]> _data = new();
         public TestResultGenerator()
         {
             var redWin = new ResultBuilder().RegulationWin(redTeam, 2, blueTeam, 0).Build();
