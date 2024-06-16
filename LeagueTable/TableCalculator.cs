@@ -11,27 +11,41 @@ namespace LeagueTable
             var tableEntries = CreateTable(results, teams);
 
             var teamsGroupedBySamePoints = tableEntries.GroupBy(x => x.Points).OrderByDescending(x => x.Key).ToList();
-            if (teamsGroupedBySamePoints.Count() == teams.Count)
+            if (teamsGroupedBySamePoints.Count == teams.Count)
             {
                 return tableEntries.OrderByDescending(x => x.Points).ToList();
             }
+
             var calculatedTable = new List<TableEntry>();
-            calculatedTable.Add(teamsGroupedBySamePoints.First().First());
+            foreach (var pointsGroup in teamsGroupedBySamePoints)
+            {
+                if (pointsGroup.Count() == 1)
+               {
+                    calculatedTable.Add(pointsGroup.First());
+                }
+                else
+                {
+                    var teamsInGroup = pointsGroup.Select(x => x.TeamId).ToList();
+                    var relevantResults = results.Where(x => teamsInGroup.Contains(x.HomeTeamId) && teamsInGroup.Contains(x.AwayTeamId)).ToList();
+                    var table = CreateTable(relevantResults, teamsInGroup);
 
-            var runnersUp = teamsGroupedBySamePoints.Skip(1).Take(1).First();
-            var teamsInGroup = runnersUp.Select(x => x.TeamId).ToList();
-            var relevantResults = results.Where(x => teamsInGroup.Contains(x.HomeTeamId) && teamsInGroup.Contains(x.AwayTeamId)).ToList();
+                    if (teams.Count == teamsInGroup.Count)
+                    {
+                        calculatedTable.AddRange(table.OrderByDescending(x => x.GoalsScored - x.GoalsConceded));
+                    }
+                    else
+                    {
+                        calculatedTable.AddRange(Sort(relevantResults));
+                    }
+                }
+            }
 
-            var table = CreateTable(relevantResults, teamsInGroup);
-            
-            calculatedTable.AddRange(table.OrderByDescending(x => x.GoalsScored-x.GoalsConceded));
             return calculatedTable;
-
         }
 
         private static List<TableEntry> CreateTable(List<Result> results, List<int> teams)
         {
-            List<TableEntry> tableEntries = new(); 
+            List<TableEntry> tableEntries = new();
             foreach (var team in teams)
             {
                 tableEntries.Add(new TableEntry(team, results));
