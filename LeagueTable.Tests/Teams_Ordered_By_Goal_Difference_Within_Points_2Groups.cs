@@ -87,15 +87,15 @@ namespace LeagueTableTests
                     .With(x => x.AwayScore, 0)
                     .With(x => x.Type, ResultEnum.Regulation)
                     .Create();
-                var redLossPurple = fixture.Build<Result>()
+                var greenBeatPurple = fixture.Build<Result>()
                     .With(x => x.HomeTeamId, greenTeam)
                     .With(x => x.HomeScore, 3)
                     .With(x => x.AwayTeamId, purpleTeam)
                     .With(x => x.AwayScore, 0)
                     .With(x => x.Type, ResultEnum.Regulation)
                     .Create();
-                _data.Add(new object[] { new List<Result> { redBeatBlue, blueBeatGreen, redLossPurple, } });
-                _data.Add(new object[] { new List<Result> { blueBeatGreen, redBeatBlue, redLossPurple, } });
+                _data.Add(new object[] { new List<Result> { redBeatBlue, blueBeatGreen, greenBeatPurple, } });
+                _data.Add(new object[] { new List<Result> { blueBeatGreen, redBeatBlue, greenBeatPurple, } });
             }
             public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
