@@ -111,12 +111,12 @@ namespace LeagueTable
         }
     }
 
-
     internal class SortByGoalDifference : SortHandler
     {
         public override List<TableEntry> Sort(List<Result> results, List<int> teams)
         {
-            var tableEntries = CreateTable(results, teams);
+            var resultsForTeams = results.Where(x => teams.Contains(x.HomeTeamId) && teams.Contains(x.AwayTeamId)).ToList();
+            var tableEntries = CreateTable(resultsForTeams, teams);
 
             var teamsGroupedBySameGoalDifference = tableEntries.GroupBy(x => (x.GoalsScored - x.GoalsConceded)).OrderByDescending(x => x.Key).ToList();
             if (teamsGroupedBySameGoalDifference.Count == teams.Count)
@@ -130,21 +130,29 @@ namespace LeagueTable
                 {
                     calculatedTable.Add(goalsDifferenceGroup.First());
                 }
-                else if (_successor != null)
+                else if (goalsDifferenceGroup.Count() == teams.Count)
+                {
+                    if (_successor != null)
+                    {
+                        calculatedTable.AddRange(_successor.Sort(resultsForTeams, teams));
+                    }
+                }
+                else
                 {
                     var teamsInGroup = goalsDifferenceGroup.Select(x => x.TeamId).ToList();
-                    calculatedTable.AddRange(_successor.Sort(results, teamsInGroup));
+                    calculatedTable.AddRange(new IIHFSorter().Sort(resultsForTeams, teamsInGroup));
                 }
             }
             return calculatedTable;
         }
     }
 
-    internal class SortByGoalsScored : SortHandler
+internal class SortByGoalsScored : SortHandler
     {
         public override List<TableEntry> Sort(List<Result> results, List<int> teams)
         {
-            var tableEntries = CreateTable(results, teams);
+            var resultsForTeams = results.Where(x => teams.Contains(x.HomeTeamId) && teams.Contains(x.AwayTeamId)).ToList();
+            var tableEntries = CreateTable(resultsForTeams, teams);
 
             var teamsGroupedBySameGoalScored = tableEntries.GroupBy(x => x.GoalsScored).OrderByDescending(x => x.Key).ToList();
             if (teamsGroupedBySameGoalScored.Count == teams.Count)
@@ -158,10 +166,18 @@ namespace LeagueTable
                 {
                     calculatedTable.Add(goalsScoredGroup.First());
                 }
-                else if (_successor != null)
+                else if (goalsScoredGroup.Count() == teams.Count)
+                {
+                    if (_successor != null)
+                    {
+                        var teamsInGroup = goalsScoredGroup.Select(x => x.TeamId).ToList();
+                        calculatedTable.AddRange(_successor.Sort(resultsForTeams, teamsInGroup));
+                    }
+                }
+                else
                 {
                     var teamsInGroup = goalsScoredGroup.Select(x => x.TeamId).ToList();
-                    calculatedTable.AddRange(_successor.Sort(results, teamsInGroup));
+                    calculatedTable.AddRange(new IIHFSorter().Sort(resultsForTeams, teamsInGroup));
                 }
             }
             return calculatedTable;
